@@ -15,9 +15,13 @@ public class Task05 {
         for (int i = 0; i < password.length(); i++) {
             char c = password.charAt(i);
             if (Character.isLetter(c))
-                builderPassword.append((int)c);
-            if (Character.isDigit(c))
-                builderPassword.append(Character.getNumericValue(c) + 1);
+                builderPassword.append((int) c);
+            if (Character.isDigit(c)) {
+                if (c == '9')
+                    builderPassword.append(0);
+                else
+                    builderPassword.append(Character.getNumericValue(c) + 1);
+            }
         }
         System.out.println("Зашифрованный пароль: " + builderPassword);
     }
