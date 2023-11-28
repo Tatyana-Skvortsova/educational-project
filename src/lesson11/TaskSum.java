@@ -13,6 +13,8 @@ public class TaskSum {
         list.add(2);
         list.add(3);
         list.add(3);
+        list.add(7);
+        list.add(5);
         System.out.println(list);
 
         double sum = list.stream()
@@ -34,6 +36,17 @@ public class TaskSum {
         System.out.println(elements);
 
         //Task3 -Посчитать сумму всех четных и нечетных элементов листа
+        System.out.println("Задача 3 - Посчитать сумму всех четных и нечетных элементов листа");
+        System.out.println(list);
+        int sumEven =list.stream()
+                .filter(x -> x % 2 == 0)
+                .reduce(0,Integer::sum);
+        int sumOdd =list.stream().
+                filter(x -> x % 2 != 0).
+                reduce(0,Integer::sum);
+        System.out.println("Сумма четных чисел: " + sumEven);
+        System.out.println("Сумма нечетных чисел: " + sumOdd);
+
 
         //Task4 -Убрать все дублирующиеся элементы из листа используя стримы.
         System.out.println("Задача 4 - Убрать все дублирующиеся элементы из листа используя стримы.");
@@ -76,7 +89,33 @@ public class TaskSum {
                 .reduce(Integer::min).orElse(0);
         System.out.println("Min: " + num);
 
-        //Task8 -
+        //Task8 - Найти второй самый маленький и самый большой элементы в листе интеджеров.
+        System.out.println("Задача 8 - Найти второй самый маленький и самый большой элементы в листе интеджеров.");
+        System.out.println(list);
+
+        int min = list.stream()
+               .reduce(Integer::min)
+                .orElse(0);
+        int max = list.stream()
+                .reduce(Integer::max)
+                .orElse(0);
+
+        list = list.stream()
+                .filter(a -> a != min)
+                .collect(Collectors.toList());
+        list = list.stream().
+                filter(a -> a != max).
+                collect(Collectors.toList());
+
+        int min2 = list.stream()
+                .reduce(Integer::min)
+                .orElse(0);
+        int max2 = list.stream()
+                .reduce(Integer::max)
+                .orElse(0);
+
+        System.out.println("Второе самое маленькое число: " + min2);
+        System.out.println("Второе самое большое число: " + max2);
     }
 }
 
